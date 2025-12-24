@@ -26,7 +26,7 @@ def main():
         option = input("Choose an option: ")
 
        if option == "1":
-    register_user()
+            register_user()
         elif option == "2":
             print("List users selected")
         elif option == "3":
