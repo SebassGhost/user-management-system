@@ -28,6 +28,12 @@ def register_user(users):
     email = input("Enter email: ")
     age = input("Enter age: ")
 
+    # Check for duplicate email
+    for user in users:
+        if user["email"] == email:
+            print("\nEmail already registered.")
+            return
+
     user = {
         "name": name,
         "email": email,
@@ -38,6 +44,44 @@ def register_user(users):
     save_users(users)
     print("\nUser registered successfully")
 
+# List users
+def list_users(users):
+    if not users:
+        print("\nNo users registered.")
+        return
+
+    print("\nRegistered Users:")
+    for i, user in enumerate(users, start=1):
+        print(f"{i}. Name: {user['name']} | Email: {user['email']} | Age: {user['age']}")
+
+# Search user by email
+def search_user(users):
+    email = input("Enter email to search: ")
+
+    for user in users:
+        if user["email"] == email:
+            print("\nUser found:")
+            print(f"Name: {user['name']}")
+            print(f"Email: {user['email']}")
+            print(f"Age: {user['age']}")
+            return
+
+    print("\nUser not found.")
+
+# Delete user by email
+def delete_user(users):
+    email = input("Enter email to delete: ")
+
+    for user in users:
+        if user["email"] == email:
+            users.remove(user)
+            save_users(users)
+            print("\nUser deleted successfully.")
+            return
+
+    print("\nUser not found.")
+
+# Main function
 def main():
     users = load_users()
 
@@ -48,16 +92,16 @@ def main():
         if option == "1":
             register_user(users)
         elif option == "2":
-            print(users)
+            list_users(users)
         elif option == "3":
-            print("Search user selected")
+            search_user(users)
         elif option == "4":
-            print("Delete user selected")
+            delete_user(users)
         elif option == "5":
-            print("Goodbye!")
+            print("\nGoodbye!")
             break
         else:
-            print("Invalid option. Try again.")
+            print("\nInvalid option. Try again.")
 
 if __name__ == "__main__":
     main()
