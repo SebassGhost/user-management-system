@@ -25,7 +25,7 @@ def main():
         show_menu()
         option = input("Choose an option: ")
 
-       if option == "1":
+        if option == "1":
             register_user()
         elif option == "2":
             print("List users selected")
